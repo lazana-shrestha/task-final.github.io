@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Your Tasks</h2>
+      <button style="justify-content: center">
+        <i class="fa-solid fa-plus"></i> Add a new task
+      </button>
+      <div class="divider"></div>
+
+      <div class="menu-item active">
+        <i class="fa-solid fa-list"></i> All Tasks
+      </div>
+
+      <div class="section-title">PRIORITY</div>
+      <div class="menu-item" style="padding-left: 20px">
+        <span class="priority-dot dot-high"></span> High
+      </div>
+      <div class="menu-item" style="padding-left: 20px">
+        <span class="priority-dot dot-low"></span> Low
+      </div>
+
+      <div class="section-title">TASKS</div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-solid fa-hourglass-half"></i> Previous
+      </div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-regular fa-clock"></i> Today
+      </div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-solid fa-paper-plane"></i> Upcoming
+      </div>
+
+      <div class="section-title">CATEGORIES</div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-solid fa-house"></i> Personal
+      </div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-solid fa-briefcase"></i> Professional
+      </div>
+      <div class="menu-item" style="padding-left: 20px">
+        <i class="fa-solid fa-graduation-cap"></i> Academics
+      </div>
+    </div>
+
+    <div class="main">
+      <h1>All Tasks</h1>
+      <div class="filters">
+        <button class="filter-btn">
+          <i class="fa-solid fa-filter"></i> Status
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
+        <button class="filter-btn">
+          <i class="fa-solid fa-calendar"></i> 2025-07-01
+        </button>
+        <div class="search">
+          <i class="fa-solid fa-search"></i>
+          <input type="text" id="searchBar" placeholder="Search" />
+        </div>
+      </div>
+
+      <div id="taskList">
+        <div class="task">
+          <div class="task-left">
+            <input type="checkbox" />
+            <div class="task-details">
+              <strong>Research on Figma</strong>
+              <span class="task-date"
+                ><i class="fa-solid fa-calendar"></i> 2025-07-01</span
+              >
+            </div>
+          </div>
+          <div class="task-right">
+            <span class="priority-dot dot-high"></span>
+            <i class="fa-solid fa-building"></i>
+            <span class="status-badge doing">Doing</span>
+            <button class="icon-btn">
+              <i class="fa-solid fa-ellipsis"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-left">
+            <input type="checkbox" />
+            <div class="task-details">
+              <strong>Research on Web Designing</strong>
+              <span class="task-date"
+                ><i class="fa-solid fa-calendar"></i> 2025-07-03</span
+              >
+            </div>
+          </div>
+          <div class="task-right">
+            <span class="priority-dot dot-low"></span>
+            <i class="fa-solid fa-building"></i>
+            <span class="status-badge todo">To-Do</span>
+            <button class="icon-btn">
+              <i class="fa-solid fa-ellipsis"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="task">
+          <div class="task-left">
+            <input type="checkbox" />
+            <div class="task-details">
+              <strong>Laundry</strong>
+              <span class="task-date"
+                ><i class="fa-solid fa-calendar"></i> 2025-07-04</span
+              >
+            </div>
+          </div>
+          <div class="task-right">
+            <span class="priority-dot dot-low"></span>
+            <i class="fa-solid fa-house"></i>
+            <span class="status-badge done">Done</span>
+            <button class="icon-btn">
+              <i class="fa-solid fa-ellipsis"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Live search
+      const searchBar = document.getElementById("searchBar");
+      const taskList = document.getElementById("taskList");
+      searchBar.addEventListener("keyup", function () {
+        let filter = searchBar.value.toLowerCase();
+        let tasks = taskList.getElementsByClassName("task");
+        Array.from(tasks).forEach((task) => {
+          let title = task
+            .querySelector(".task-details strong")
+            .textContent.toLowerCase();
+          task.style.display = title.includes(filter) ? "" : "none";
+        });
+      });
+    </script>
+  </body>
+</html>
