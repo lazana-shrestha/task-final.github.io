@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1>Your Tasks</h1>
+      </div>
+
+      <div class="add-task" id="show-task-form">
+        <i class="fas fa-plus"></i>
+        <span>Add a new task</span>
+      </div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-sections">
+          <div class="sidebar-section">
+            <div class="sidebar-item active" data-filter="all">
+              <i class="fas fa-tasks"></i>
+              <span>All Tasks</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h2>PRIORITY</h2>
+            <div class="sidebar-item" data-filter="high">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>High</span>
+            </div>
+            <div class="sidebar-item" data-filter="medium">
+              <i class="fas fa-minus-circle"></i>
+              <span>Medium</span>
+            </div>
+            <div class="sidebar-item" data-filter="low">
+              <i class="fas fa-check-circle"></i>
+              <span>Low</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h2>DATE</h2>
+            <div class="sidebar-item" data-filter="previous">
+              <i class="fas fa-chevron-left"></i>
+              <span>Previous</span>
+            </div>
+            <div class="sidebar-item" data-filter="today">
+              <i class="far fa-calendar-check"></i>
+              <span>Today</span>
+            </div>
+            <div class="sidebar-item" data-filter="upcoming">
+              <i class="fas fa-chevron-right"></i>
+              <span>Upcoming</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h2>CATEGORIES</h2>
+            <div class="sidebar-item" data-filter="personal">
+              <i class="far fa-user"></i>
+              <span>Personal</span>
+            </div>
+            <div class="sidebar-item" data-filter="professional">
+              <i class="fas fa-briefcase"></i>
+              <span>Professional</span>
+            </div>
+            <div class="sidebar-item" data-filter="academics">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Academics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h1 id="main-heading">ALL TASKS</h1>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-input" placeholder="Search tasks..." />
+        </div>
+      </div>
+
+      <div class="tasks-container">
+        <div class="task-column" data-status="todo">
+          <div class="task-column-header">
+            <h2>To-Do</h2>
+            <span class="count">0</span>
+          </div>
+          <div class="task-items" id="todo-tasks"></div>
+        </div>
+
+        <div class="task-column" data-status="doing">
+          <div class="task-column-header">
+            <h2>Doing</h2>
+            <span class="count">0</span>
+          </div>
+          <div class="task-items" id="doing-tasks"></div>
+        </div>
+
+        <div class="task-column" data-status="done">
+          <div class="task-column-header">
+            <h2>Done</h2>
+            <span class="count">0</span>
+          </div>
+          <div class="task-items" id="done-tasks"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for adding/editing task -->
+    <div class="modal-overlay" id="task-modal">
+      <div class="modal-content">
+        <h2 style="margin-bottom: 20px">Add New Task</h2>
+        <form id="task-form">
+          <div class="form-group">
+            <label for="task-title">Task Title*</label>
+            <input
+              type="text"
+              id="task-title"
+              placeholder="Enter task title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="task-description">Description (Optional)</label>
+            <textarea
+              id="task-description"
+              placeholder="Enter task description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="task-priority">Priority</label>
+            <select id="task-priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="task-category">Category</label>
+            <select id="task-category">
+              <option value="personal">Personal</option>
+              <option value="professional">Professional</option>
+              <option value="academics">Academics</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="task-date">Due Date</label>
+            <input type="date" id="task-date" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-task">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="save-task">
+              Add Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
